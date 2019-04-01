@@ -10,10 +10,10 @@
                   :main-opts  ["-m" "mach.pack.alpha.skinny"
                                "--no-libs"
                                "--project-path" "target/periods.jar"]}
-  #_:garamond    #_ {:main-opts  ["-m" "garamond.main"
-                                  "--artifact-id" "periods"
-                                  "--group-id" "com.levitanong"]
-                     :extra-deps {com.workframe/garamond {:mvn/version "0.4.0"}}}
+  :garamond      {:main-opts  ["-m" "garamond.main"
+                               "--artifact-id" "periods"
+                               "--group-id" "com.levitanong"]
+                  :extra-deps {com.workframe/garamond {:mvn/version "0.4.0"}}}
   :metav         {:extra-deps {metav {:mvn/version "1.4.6"}}}
   :artifact-name {:extra-deps {metav {:mvn/version "1.4.6"}}
                   :main-opts  ["-m" "metav.display"]}

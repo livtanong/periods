@@ -8,7 +8,7 @@ jar:
 	clojure -Ajar
 
 release-patch:
-	clojure -Arelease patch
+	clojure -Agaramond patch --tag --pom
 
 release-minor:
 	clojure -Arelease minor

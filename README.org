@@ -4,7 +4,8 @@ A small time period (e.g. 4 months, 3 hours, 2 minutes) library determined NOT
 to work on date-times. I repeat, this is not a date-time library.
 
 * Installation
-[com.levitanong/periods "0.0.3"]
+https://img.shields.io/clojars/v/com.levitanong/periods.svg
+[[https://clojars.org/com.levitanong/periods][Clojars]]
 
 * Usage
 
