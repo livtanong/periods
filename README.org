@@ -1,38 +1,37 @@
-#+TITLE: Periods
+* Periods
 
 A small time period (e.g. 4 months, 3 hours, 2 minutes) library determined NOT
 to work on date-times. I repeat, this is not a date-time library.
 
-* Installation
-#+BEGIN_EXPORT html
-<a href="https://clojars.org/com.levitanong/periods">
-<img src="https://img.shields.io/clojars/v/com.levitanong/periods.svg" />
-</a>
+**  Installation
+[[https://clojars.org/com.levitanong/periods][https://img.shields.io/clojars/v/com.levitanong/periods.svg]]
+# #+BEGIN_EXPORT html
+# <a href="https://clojars.org/com.levitanong/periods">
+# <img src="https://img.shields.io/clojars/v/com.levitanong/periods.svg" />
+# </a>
 #+END_EXPORT
-* Usage
-
+** Usage
 From this point forward, it is assumed that your require statement looks like this
 #+begin_src clojure
 (require '[periods.core :as periods])
 #+end_src
-
-** Periods are just hash maps.
+*** Periods are just hash maps.
 #+begin_src clojure
 {:hours 25}
 #+end_src
 
-** The keys are unabbreviated and plural.
+*** The keys are unabbreviated and plural.
 #+begin_src clojure
 (def period-units
   [:years :months :days :hours :minutes :seconds :milliseconds])
 #+end_src
 
-** Normalize periods to be proper.
+*** Normalize periods to be proper.
 #+begin_src clojure
 (periods/normalize {:hours 25}) ;; {:days 1, :hours 1}
 #+end_src
 
-** 365.25 days a year
+*** 365.25 days a year
 That 0.25 refers to leap years. This means there are 30.4375 days in a month on
 average.
 #+begin_src clojure
