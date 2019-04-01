@@ -4,4 +4,11 @@
  {:test-clj {:extra-paths ["test"]
              :extra-deps  {com.cognitect/test-runner {:git/url "https://github.com/cognitect-labs/test-runner.git"
                                                       :sha     "cb96e80f6f3d3b307c59cbeb49bb0dcb3a2a780b"}}
-             :main-opts   ["-m" "cognitect.test-runner"]}}}
+             :main-opts   ["-m" "cognitect.test-runner"]}
+  :jar      {:extra-deps {pack/pack.alpha {:git/url "https://github.com/juxt/pack.alpha.git"
+                                           :sha     "73552d02e43fa7fac4e3f245257742a9534ea0f2"}}
+             :main-opts  ["-m" "mach.pack.alpha.skinny"
+                          "--no-libs"
+                          "--project-path" "target/periods.jar"]}
+  :garamond {:main-opts  ["-m" "garamond.main"]
+             :extra-deps {com.workframe/garamond {:mvn/version "0.4.0"}}}}}

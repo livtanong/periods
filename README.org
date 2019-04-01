@@ -1,13 +1,12 @@
+#+MACRO: imglnk @@html:<a href="$1"><img src="$2"></a>@@
+
 #+TITLE: Periods
 
 A small time period (e.g. 4 months, 3 hours, 2 minutes) library determined NOT
 to work on date-times. I repeat, this is not a date-time library.
 
 * Installation
-
-#+begin_src
-[com.levitanong/periods "0.0.2"]
-#+end_src
+{{{imglink(https://img.shields.io/clojars/v/com.levitanong/periods.svg, https://clojars.org/com.levitanong/periods)}}}
 
 * Usage
 
