@@ -14,7 +14,7 @@
 (s/def ::months number?)
 (s/def ::years number?)
 (s/def ::period
-  (s/keys :opt-un [::milliseconds ::seconds ::minutes ::hours ::days ::months ::years]))
+  (s/keys :opt-un [::years ::months ::days ::hours ::minutes ::seconds ::milliseconds]))
 (s/def ::millisecond-period
   (s/keys :req-un [::milliseconds]))
 
@@ -38,7 +38,7 @@
    :years        :months})
 
 (def period-units
-  (reverse [:milliseconds :seconds :minutes :hours :days :months :years]))
+  [:years :months :days :hours :minutes :seconds :milliseconds])
 
 (defn period->millisecond-period
   "Convert any period to a period with milliseconds"
@@ -102,9 +102,11 @@
    :post [(s/valid? ::period %)]}
   (normalize-milliseconds (period->millisecond-period period)))
 
-(defn format-period
+(defn stringify-period
+  "Not too happy with this API yet. Do not use unless you're willing to deal with breaking changes.
+  reserve the symbol `format-period` for a future api that makes use of format strings to make usage easier"
   ([period]
-   (format-period period (fn [value unit]
+   (stringify-period period (fn [value unit]
                            (let [unit-str (name unit)]
                              (if (> value 1)
                                unit-str
