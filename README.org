@@ -15,6 +15,7 @@ From this point forward, it is assumed that your require statement looks like th
 #+begin_src clojure
 (require '[periods.core :as periods])
 #+end_src
+
 *** Periods are just hash maps.
 #+begin_src clojure
 {:hours 25}
@@ -27,9 +28,12 @@ From this point forward, it is assumed that your require statement looks like th
 #+end_src
 
 *** Normalize periods to be proper.
-#+begin_src clojure
+#+begin_src clojure :exports both
 (periods/normalize {:hours 25}) ;; {:days 1, :hours 1}
 #+end_src
+
+#+RESULTS:
+: nil{:days 1, :hours 1}
 
 *** 365.25 days a year
 That 0.25 refers to leap years. This means there are 30.4375 days in a month on
