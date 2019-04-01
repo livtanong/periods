@@ -29,15 +29,15 @@ From this point forward, it is assumed that your require statement looks like th
 #+end_src
 
 #+RESULTS:
-{:days 1, :hours 1}
+: {:days 1, :hours 1}
 
 *** 365.25 days a year
 That 0.25 refers to leap years. This means there are 30.4375 days in a month on
 average.
-#+begin_src clojure
+#+begin_src clojure :exports both
 (periods/normalize-milliseconds {:milliseconds 66571200000})
 ;; {:years 2 :months 1 :days 9 :hours 13 :minutes 30}
 #+end_src
 
 #+RESULTS:
-{:years 2, :months 1, :days 9, :hours 13, :minutes 30}
+: {:years 2, :months 1, :days 9, :hours 13, :minutes 30}
