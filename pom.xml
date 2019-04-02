@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.levitanong</groupId>
   <artifactId>periods</artifactId>
-  <version>0.0.4</version>
+  <version>0.0.5</version>
   <name>periods</name>
   <dependencies>
     <dependency>
@@ -18,7 +18,7 @@
   <repositories/>
 <scm>
     <url/>
-    <tag>e410ad9cedd4d90457af2423241f278d7c002088</tag>
+    <tag>2831eacf11d36ed846314ea0487b39f7d2b159ff</tag>
     <connection>scm:git:git@github.com:levitanong/periods.git</connection>
     <developerConnection>scm:git:git@github.com:levitanong/periods.git</developerConnection>
   </scm>
