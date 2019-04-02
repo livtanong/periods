@@ -24,7 +24,9 @@ From this point forward, it is assumed that your require statement looks like th
 #+end_src
 
 *** Normalize periods to be proper.
-#+begin_src clojure :exports both :results pp
+#+header: :results pp
+#+header: :exports both
+#+begin_src clojure
 (periods/normalize {:hours 25})
 #+end_src
 
@@ -34,7 +36,9 @@ From this point forward, it is assumed that your require statement looks like th
 *** 365.25 days a year
 That 0.25 refers to leap years. This means there are 30.4375 days in a month on
 average.
-#+begin_src clojure :exports both :results pp
+#+header: :results pp
+#+header: :exports both
+#+begin_src clojure
 (periods/normalize-milliseconds {:milliseconds 66571200000})
 #+end_src
 
