@@ -40,32 +40,6 @@
 (def period-units
   [:years :months :days :hours :minutes :seconds :milliseconds])
 
-(defn period->millisecond-period
-  "Convert any period to a period with milliseconds"
-  [period]
-  {:pre  [(s/valid? ::period period)]
-   :post [(s/valid? ::millisecond-period %)]}
-  (reduce (fn [acc-period period-unit]
-            ;; if the value doesn't exist, skip.
-            (if-let [unit-value (get acc-period period-unit)]
-              (let [multiplier   (get shrinking-multiplier period-unit 1)
-                    shrunk-unit  (shrink period-unit)
-                    shrunk-value (* multiplier unit-value)]
-                ;; If a value already exists for the shrunken unit, just add them together.
-                ;; e.g. {:hours 1 :minutes 30} => {:minutes 90}
-                (if-not shrunk-unit
-                  acc-period
-                  (merge-with +
-                              (dissoc acc-period period-unit)
-                              {shrunk-unit shrunk-value})))
-              acc-period))
-          ;; initialize period to always at least have 0 milliseconds
-          (if (:milliseconds period)
-            period
-            (assoc period :milliseconds 0))
-          ;; we want to go from big units first, milliseconds last.
-          period-units))
-
 (defn period->mono-period
   "Convert any period to a period with one specific unit.
 If source period has data in smaller periods than `target-unit`,
@@ -97,6 +71,13 @@ that data will be dropped."
           ;; only take up until target-unit.
             (let [target-unit-index (.indexOf period-units target-unit)]
               (take target-unit-index period-units)))))
+
+(defn period->millisecond-period
+  "Convert any period to a period with milliseconds"
+  [period]
+  {:pre  [(s/valid? ::period period)]
+   :post [(s/valid? ::millisecond-period %)]}
+  (period->mono-period period :milliseconds))
 
 (defn normalize-milliseconds
   [millisecond-period]
