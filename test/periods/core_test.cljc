@@ -12,6 +12,17 @@
     (testing "multiple units"
       (is (== (:milliseconds (periods/period->millisecond-period {:years 2 :days 40})) 66571200000)))))
 
+(deftest period->mono-period
+  (testing "empty map"
+    (is (== (:seconds (periods/period->mono-period {} :seconds)) 0))
+    (is (= (keys (periods/period->mono-period {} :minutes)) '(:minutes))))
+  (testing "one unit"
+    (is (== (:seconds (periods/period->mono-period {:hours 1} :seconds)) 3600)))
+  (testing "multiple units"
+    (is (== (:minutes (periods/period->mono-period {:years 2 :days 40} :minutes)) 1109520)))
+  (testing "ignore smaller units"
+    (is (== (:minutes (periods/period->mono-period {:years 2 :days 40 :seconds 59 :milliseconds 2} :minutes)) 1109520))))
+
 (deftest normalize-milliseconds
   (testing "999 milliseconds"
     (is (= (periods/normalize-milliseconds {:milliseconds 999}) {:milliseconds 999})))
@@ -29,3 +40,4 @@
 (deftest format-period
   (is (= (periods/stringify-period {:hours 1 :minutes 5})
          "1 hour 5 minutes")))
+
