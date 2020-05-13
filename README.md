@@ -5,7 +5,7 @@ for easy conversion and normalization. Not meant to work on date-times.
 I repeat, this is not a date-time library.
 
 ## Installation
-[![clojars-image-shield]](https://clojars.org/com.levitanong/periods)
+[![Clojars Project](https://img.shields.io/clojars/v/com.levitanong/periods.svg)](https://clojars.org/com.levitanong/periods)
 
 ## Usage
 From this point forward, it is assumed that your require statement looks like this
@@ -38,5 +38,3 @@ From this point forward, it is assumed that your require statement looks like th
 ```clj
 (periods/normalize-milliseconds {:milliseconds 66571200000}) ;; => {:years 2, :months 1, :days 9, :hours 13, :minutes 30}
 ```
-
-[clojars-image-shield]: https://img.shields.io/clojars/v/com.levitanong/periods.svg

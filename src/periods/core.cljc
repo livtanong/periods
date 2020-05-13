@@ -17,6 +17,7 @@
   (s/keys :opt-un [::years ::months ::days ::hours ::minutes ::seconds ::milliseconds]))
 (s/def ::millisecond-period
   (s/keys :req-un [::milliseconds]))
+(s/def ::unit #{:years :months :days :hours :minutes :seconds :milliseconds})
 
 (def shrinking-multiplier
   {:milliseconds 1
@@ -25,8 +26,7 @@
    :hours        60
    :days         24
    :months       30.4375 ;; accounts for leap years
-   :years        12
-   })
+   :years        12})
 
 (def shrink
   {:milliseconds nil
@@ -45,7 +45,8 @@
 If source period has data in smaller periods than `target-unit`,
 that data will be dropped."
   [period target-unit]
-  {:pre  [(s/valid? ::period period)]}
+  {:pre  [(s/valid? ::period period) (s/valid? ::unit target-unit)]
+   :post [(contains? % target-unit)]}
   ;; Make it so that the target unit is not shrinkable to a smaller unit.
   (let [limited-shrink (dissoc shrink target-unit)]
     (reduce (fn [acc-period period-unit]
@@ -120,10 +121,10 @@ that data will be dropped."
   reserve the symbol `format-period` for a future api that makes use of format strings to make usage easier"
   ([period]
    (stringify-period period (fn [value unit]
-                           (let [unit-str (name unit)]
-                             (if (> value 1)
-                               unit-str
-                               (subs unit-str 0 (dec (count unit-str))))))))
+                              (let [unit-str (name unit)]
+                                (if (> value 1)
+                                  unit-str
+                                  (subs unit-str 0 (dec (count unit-str))))))))
   ([period format-unit]
    {:pre [(s/valid? ::period period)]}
    (let [normalized   (normalize period)

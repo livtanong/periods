@@ -17,4 +17,7 @@ release-minor:
 
 release-major:
 	clojure -Agaramond major --tag --pom
-	clojure -Ajar
+	clojure -A:jar
+
+deploy:
+	clojure -Adeploy
